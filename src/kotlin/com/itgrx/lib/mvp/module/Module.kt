@@ -8,7 +8,7 @@ import io.reactivex.Maybe
 
 interface Module {
 
-    fun attach(moduleContext : ModuleContext): Maybe<Any>
+    fun attach(moduleContext: ModuleContext): Maybe<Any>
     fun detach()
     fun dispose(onReadyToDestroy: () -> Unit)
 

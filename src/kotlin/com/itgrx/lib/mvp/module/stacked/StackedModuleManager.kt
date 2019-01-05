@@ -10,7 +10,7 @@ import java.util.Stack
  * Created by Алексей Калайда on 10.10.2017.
  */
 
-abstract class StackedModuleManager(listener: Listener? = null) : BaseModuleManager(listener) {
+abstract class StackedModuleManager : BaseModuleManager() {
 
     data class StackNode(val container: NodeContainer, val module: Module)
 
@@ -35,11 +35,11 @@ abstract class StackedModuleManager(listener: Listener? = null) : BaseModuleMana
             if (mNodes.size > 1) {
                 val node = mNodes.pop()
                 node.module.dispose {
-                    node.container.rl(mNodes.peek().container, {
+                    node.container.rl(mNodes.peek().container) {
                         //                        replaceTitle(stackNode.module, mNodes.peek().module)
                         node.module.detach()
                         onDisposed(node.module)
-                    })
+                    }
                 }
                 true
             } else
